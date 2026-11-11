@@ -50,7 +50,21 @@ sudo apt install openssh-server -y
 sudo systemctl enable ssh
 sudo ufw allow 22/tcp
 ```
+install Docker
 
+```bash
+// get curl to download something
+sudo apt install curl
+// get docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+// execute install script
+sudo sh get-docker.sh
+// give docker root priviledges 
+sudo usermod -aG docker $USER
+// just update
+sudo apt update
+sudo apt upgrade
+```
 Clone the repository:
 
 ```bash
