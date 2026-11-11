@@ -1,0 +1,17 @@
+
+
+:80 {    
+    reverse_proxy frontend:3000 
+}
+
+:3000 {    
+    reverse_proxy frontend:3000 
+}
+
+:8080 {    
+    reverse_proxy zigbee2mqtt:8080 
+}
+
+:5000 {    
+    reverse_proxy server_api:5000 
+}

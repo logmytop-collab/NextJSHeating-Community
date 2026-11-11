@@ -1,0 +1,95 @@
+import {
+  DB,
+  USER,
+  PASSWORD,
+  HOST,
+  PORT,
+  dialect as _dialect,
+  pool as _pool,
+} from "../config/db.config.js";
+
+import Role from "./role.model.js";
+import User from "./user.model.js";
+import Strang from "./strang.model.js";
+import Sequelize from "sequelize";
+import Room from "./room.model.js";
+import Thermostat from "./thermostat.model.js";
+import Logdata from "./logdata.model.js";
+
+console.log("config.DB ", DB);
+console.log("config.User ", USER);
+console.log("config.Host ", HOST);
+console.log("config.Port ", PORT);
+
+const admin = new Sequelize("", USER, PASSWORD, {
+  host: HOST,
+  port: PORT,
+  dialect: _dialect,
+  pool: {
+    max: _pool.max,
+    min: _pool.min,
+    acquire: _pool.acquire,
+    idle: _pool.idle,
+  },
+});
+
+await admin.query("create database if not exists " + DB + " ");
+await admin.close();
+
+const sequelize = new Sequelize(DB, USER, PASSWORD, {
+  host: HOST,
+  port: PORT,
+  dialect: _dialect,
+  pool: {
+    max: _pool.max,
+    min: _pool.min,
+    acquire: _pool.acquire,
+    idle: _pool.idle,
+  },
+});
+
+const db = {};
+
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+db.user = User(sequelize, Sequelize);
+db.role = Role(sequelize, Sequelize);
+db.room = Room(sequelize, Sequelize);
+db.thermostat = Thermostat(sequelize, Sequelize);
+db.strang = Strang(sequelize, Sequelize);
+db.logdata = Logdata(sequelize, Sequelize);
+
+db.role.belongsToMany(db.user, {
+  through: "user_roles",
+});
+
+db.user.belongsToMany(db.role, {
+  through: "user_roles",
+});
+
+db.user.belongsToMany(db.role, {
+  through: "user_roles",
+});
+
+db.user.hasMany(db.room, { foreignKey: "user_Id", as: "rooms" });
+db.room.belongsTo(db.user, { foreignKey: "user_Id", as: "user" });
+
+db.room.hasMany(db.thermostat, { foreignKey: "room_Id", as: "thermostats" });
+db.thermostat.belongsTo(db.room, { foreignKey: "room_Id", as: "room" });
+
+db.room.hasMany(db.strang, { foreignKey: "room_Id", as: "strangs" });
+db.strang.belongsTo(db.room, { foreignKey: "room_Id", as: "room" });
+
+db.thermostat.hasMany(db.logdata, {
+  foreignKey: "thermostat_Id",
+  as: "logdata",
+});
+db.logdata.belongsTo(db.thermostat, {
+  foreignKey: "thermostat_Id",
+  as: "thermostat",
+});
+
+db.ROLES = ["user", "admin", "moderator"];
+
+export default db;

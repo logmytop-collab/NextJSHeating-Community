@@ -1,0 +1,20 @@
+How tpo detect USB Dongle
+->ls /dev/serial/by-id
+
+create folder 
+.\serrver_api\logs\express
+
+Install npm and next
+->sudo apt-get install nodejs npm
+
+from frontendjs
+npm install next -g
+
+from serrver_api
+
+npm install nodemon
+sudo apt install python3-libgpiod -y
+
+sudo apt update
+sudo apt install openssh-server -y
+

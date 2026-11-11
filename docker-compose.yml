@@ -1,0 +1,147 @@
+name: heatingapp
+
+services:
+  mariadb:
+    image: mariadb:11.4.10
+    container_name: mariadb
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+      - ./mariadb_conf/my.ini:/etc/mysql/my.cnf
+    networks:
+      - heatingapp
+    environment:
+      MYSQL_ROOT_PASSWORD: kingroot
+      MYSQL_DATABASE: heating
+  zigbee2mqtt:
+    build:
+      context: ./zigbee2mqtt
+      dockerfile: Dockerfile
+    container_name: zigbee2mqtt
+    image: ghcr.io/koenkk/zigbee2mqtt
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+      - /run/udev:/run/udev:ro
+    # ports:
+    #  - 8080:8080
+    expose:
+      - 8080
+    environment:
+      - TZ=Europe/Berlin
+    devices:
+      # Make sure this matched your adapter location
+      - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_3680e523ea73ef11acb6db1e313510fd-if00-port0:/dev/ttyUSB0
+      # - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_921e55bdcec2ef11a32d4cac8048b910-if00-port0:/dev/ttyUSB0
+    networks:
+      - heatingapp
+  server_api:
+    build:
+      context: ./server_api
+      dockerfile: Dockerfile
+    container_name: server_api
+    restart: unless-stopped
+    env_file: ./server_api/.env
+    environment:
+      - APP_NAME=heatingApp
+      - APP_ENV=dev
+      - APP_NAME=GipfelAPI
+      - APP_ENV=dev
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - NODE_ENV=production
+      - MOSQUITTO_SERVER=mosquitto
+    # volumes:
+    #  - ./server:/app
+    #   - /app/node_modules
+    #     - /home/markus/utils-master/pinctrl:/pinctrl
+    #     - /lib:/lib
+    #     - /sys:/sys
+    #     - /dev:/dev
+    #     - /proc:/proc
+    #     - /usr:/usr
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./scripts:/scripts
+    #   ports:
+    #     - 5000:5000
+    networks:
+      - heatingapp
+    # user: root
+    depends_on:
+      - mariadb
+      - mosquitto
+      - zigbee2mqtt
+    #  - pinctrl
+    devices:
+      - /dev/gpiochip4:/dev/gpiochip4
+  frontend:
+    build:
+      context: ./frontendjs
+      dockerfile: Dockerfile
+    container_name: frontend
+    # restart: unless-stopped
+    env_file: ./frontendjs/.env
+    environment:
+      #- HOST=frontend
+      - NODE_ENV=production
+      - API_SERVER=server_api
+      - HOSTNAME=0.0.0.0
+      - PORT=3000
+    # volumes:
+    #  - ./frontend:/app
+    #  - /app/node_modules
+    # ports:
+    #  - 3000:3000
+    # command: npm run start
+    expose:
+      - 3000
+    networks:
+      - heatingapp
+    depends_on:
+      - mariadb
+      - server_api
+      - mosquitto
+      - zigbee2mqtt
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    ports:
+      - 1883:1883 #default mqtt port
+    # - 9001:9001 #default mqtt port for websockets
+    volumes:
+      - ./mqtt/config:/mosquitto/config:rw
+      - ./mqtt/data:/mosquitto/data:rw
+      - ./mqtt/log:/mosquitto/log:rw
+    restart: unless-stopped
+    networks:
+      - heatingapp
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - 3000:3000
+      - 80:80
+      - 8080:8080
+      - 81:81
+      - 443:443
+        # - 1883:1883
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - heatingapp
+
+volumes:
+  mariadb_data:
+  config:
+  data:
+  log:
+  caddy_data:
+  caddy_config:
+
+networks:
+  heatingapp:
+    external: false
+    driver: bridge
