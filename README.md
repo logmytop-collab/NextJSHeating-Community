@@ -42,6 +42,15 @@ plus SONOFF SNZB-02D Zigbee Temperature and Humidity Sensor,
 
 ### Installation
 
+install ssh on ubuntu
+
+```bash
+sudo apt update
+sudo apt install openssh-server -y
+sudo systemctl enable ssh
+sudo ufw allow 22/tcp
+```
+
 Clone the repository:
 
 ```bash
