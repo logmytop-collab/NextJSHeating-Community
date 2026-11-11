@@ -100,7 +100,7 @@ export async function setAuthCookies(
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     domain:
-      process.env.NODE_ENV === "production" ? "markus-server.eu" : "localhost",
+      process.env.NODE_ENV === "production" ? "your-host.com" : "localhost",
     maxAge: 60 * 15, // 15 minutes
     path: "/",
   });
@@ -109,7 +109,7 @@ export async function setAuthCookies(
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     domain:
-      process.env.NODE_ENV === "production" ? "markus-server.eu" : "localhost",
+      process.env.NODE_ENV === "production" ? "your-host.com" : "localhost",
     sameSite: "lax",
     maxAge: 60 * 60 * 24 * 7, // 7 days
     path: "/",

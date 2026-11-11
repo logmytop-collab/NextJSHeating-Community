@@ -9,8 +9,8 @@ import { QueryTypes } from "sequelize";
 
 const options = {
   clientId: "Icke",
-  Username: "markus",
-  Password: "markus",
+  Username: "Horst",
+  Password: "Schlemmer",
   clean: true,
 };
 
