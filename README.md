@@ -108,6 +108,7 @@ JWT_SECRET=your-secret
 
 ## Project Structure
 
+```text
 ./
 ├── caddy/
 ├── frontendjs/
