@@ -68,8 +68,8 @@ sudo apt upgrade
 Clone the repository:
 
 ```bash
-git clone https://github.com/logmytop-collab/NextJSHeating.git
-cd NextJSHeating
+git clone https://github.com/logmytop-collab/NextJSHeating-Community.git
+cd NextJSHeating-Community
 ```
 
 Install dependencies:
