@@ -13,6 +13,10 @@ A modern web application for monitoring and managing heating systems, built with
 - Mobile-friendly design
 - utilising raspberry pi 5 as server and controller of the heating strangs
 
+## Mobile browser View
+
+![Room setting](images/room.eaxample.jpeg)
+
 ## Technology Stack
 
 - Next.js
