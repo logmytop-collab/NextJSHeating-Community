@@ -171,7 +171,7 @@ export async function initial() {
   const usr = await User.create({
     id: getRandomInt(3, 333),
     username: "admin",
-    password: hashSync("admin"),
+    password: hashSync("4711"),
   });
 
   //usr.rooms
