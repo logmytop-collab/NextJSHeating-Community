@@ -112,7 +112,19 @@ JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 JWT_REFRESH_SECRET=your-super-secret-refresh-key-change-this
 MOSQUITTO_SERVER=mosquitto
 ```
+- frontend
+```sh
+nano ./frontendjs/.env
+```
+```bash
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_REFRESH_SECRET=your-super-secret-refresh-key-change-this
 
+ACCESS_TOKEN_EXPIRY=15m
+REFRESH_TOKEN_EXPIRY=7d
+
+NODE_ENV=development
+```
 
 
 Install dependencies:
