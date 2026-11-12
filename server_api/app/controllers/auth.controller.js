@@ -7,12 +7,6 @@ const Role = db.role;
 
 const Op = db.Sequelize.Op;
 
-import jwt from "jsonwebtoken";
-//const jwt = require("jsonwebtoken");
-//import { createRequire } from "module";
-//const require = createRequire(import.meta.url);
-//const sign = require("jsonwebtoken");
-
 import { hashSync, compareSync } from "bcryptjs";
 
 const secretKey = process.env.JWT_SECRET
@@ -54,47 +48,6 @@ export function signup(req, res) {
     .catch((err) => {
       res.status(500).send({ message: err.message });
     });
-}
-
-function makeState() {
-  const now = Date.now();
-  const payload = {
-    nonce: crypto.randomBytes(16).toString("hex"),
-    iat: now,
-  };
-
-  const encoded = Buffer.from(JSON.stringify(payload)).toString("base64url");
-
-  const sig = crypto
-    .createHmac("sha256", GOOGLE_STATE_SECRET)
-    .update(encoded)
-    .digest("base64url");
-
-  const ret = `${encoded}.${sig}`;
-  return ret;
-}
-
-function validateState(state) {
-  const [encoded, sig] = state.split(".");
-
-  const expectedSig = crypto
-    .createHmac("sha256", GOOGLE_STATE_SECRET)
-    .update(encoded)
-    .digest("base64url");
-
-  if (!crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expectedSig))) {
-    return false;
-  }
-
-  const payload = JSON.parse(Buffer.from(encoded, "base64url").toString());
-
-  const FIVE_MINUTES = 5 * 60 * 1000;
-  const now = Date.now();
-  if (now - payload.iat > FIVE_MINUTES) {
-    return false;
-  }
-
-  return true;
 }
 
 export async function generateAccessToken(

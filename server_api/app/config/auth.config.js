@@ -1,5 +1,5 @@
 const mysecret = {
-  secret: "mkietzmann-secret-key",
+  secret: "your-secret-key",
 };
 
 export default mysecret;

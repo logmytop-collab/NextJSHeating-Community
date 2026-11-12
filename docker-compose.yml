@@ -46,21 +46,11 @@ services:
     environment:
       - APP_NAME=heatingApp
       - APP_ENV=dev
-      - APP_NAME=GipfelAPI
-      - APP_ENV=dev
       - DB_HOST=mariadb
       - DB_PORT=3306
       - NODE_ENV=production
       - MOSQUITTO_SERVER=mosquitto
-    # volumes:
-    #  - ./server:/app
-    #   - /app/node_modules
-    #     - /home/markus/utils-master/pinctrl:/pinctrl
-    #     - /lib:/lib
-    #     - /sys:/sys
-    #     - /dev:/dev
-    #     - /proc:/proc
-    #     - /usr:/usr
+
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./scripts:/scripts
