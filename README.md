@@ -125,26 +125,30 @@ REFRESH_TOKEN_EXPIRY=7d
 
 NODE_ENV=development
 ```
-
-
-Install dependencies:
-
+Configuration of Dongle
+connect the DOngle and run 
 ```bash
-npm install
+->ls /dev/serial/by-id
+```
+you should see something like 
+```shell
+lrwxrwxrwx 1 root root 13 Nov 12 08:50 usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_921e55bdcec2ef11a32d4cac8048b910-if00-port0 -> ../../ttyUSB0
+```
+```yaml
+ zigbee2mqtt:
+   devices:
+      # Make sure this matched your adapter location
+      - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_3680e523ea73ef11acb6db1e313510fd-if00-port0:/dev/ttyUSB0
+      # - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_921e55bdcec2ef11a32d4cac8048b910-if00-port0:/dev/ttyUSB0  
 ```
 
-Create an environment file:
+enter the dongle in the docker-compose file as devive
+
+
+Build docker container and run
 
 ```bash
-cp .env.example .env.local
-```
-
-Configure the required environment variables.
-
-Start the development server:
-
-```bash
-npm run dev
+docker compose up --build
 ```
 
 Open your browser:
