@@ -2,8 +2,8 @@ import mqtt from "mqtt";
 
 const options = {
   clientId: "Icke",
-  Username: "markus",
-  Password: "markus",
+  Username: process.env.MOSQUITTO_USER,
+  Password: process.env.MOSQUITTO_PWD,
   clean: true,
 };
 
