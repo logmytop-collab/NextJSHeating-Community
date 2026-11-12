@@ -92,6 +92,27 @@ Clone the repository:
 git clone https://github.com/logmytop-collab/NextJSHeating-Community.git
 cd NextJSHeating-Community
 ```
+Create environment files
+- server
+```sh
+nano ./server_api/.env
+```
+```bash
+PORT=5000
+
+MOSQUITTO_USER=markus
+MOSQUITTO_PWD=markus
+
+DB_HOST=mariadb
+DB_PORT=3306
+DB_PWD=Crazy007
+
+NODE_ENV=production
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_REFRESH_SECRET=your-super-secret-refresh-key-change-this
+MOSQUITTO_SERVER=mosquitto
+```
+
 
 
 Install dependencies:
