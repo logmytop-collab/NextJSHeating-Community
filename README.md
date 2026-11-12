@@ -29,9 +29,10 @@ A modern web application for monitoring and managing heating systems, built with
 - Zigbee2mqtt
 
 ## Getting Started
-on a frech installed Ubuntu 24 on a Raspberry PI 5 and 
-a Zigbee adapter (SONOFF Zigbee 3.0 USB Dongle Plus | ZBDongle-E × 1) 
-plus SONOFF SNZB-02D Zigbee Temperature and Humidity Sensor,
+on a frech installed Ubuntu 24 on a 
+- Raspberry PI 5 (Ubuntu)
+- Zigbee adapter (SONOFF Zigbee 3.0 USB Dongle Plus | ZBDongle-E × 1) 
+- SONOFF SNZB-02D Zigbee Temperature and Humidity Sensor,
 
 ### Prerequisites
 
@@ -43,15 +44,14 @@ plus SONOFF SNZB-02D Zigbee Temperature and Humidity Sensor,
 ### Installation
 
 install ssh on ubuntu
-
 ```bash
 sudo apt update
 sudo apt install openssh-server -y
 sudo systemctl enable ssh
 sudo ufw allow 22/tcp
 ```
-install Docker
 
+install Docker
 ```bash
 // get curl to download something
 sudo apt install curl
@@ -65,8 +65,7 @@ sudo usermod -aG docker $USER
 sudo apt update
 sudo apt upgrade
 ```
-install vs code
-
+install vs code for convinience
 ```bash
 sudo apt update
 sudo apt install wget gpg -y
@@ -87,8 +86,8 @@ sudo apt install code -y
 ```
 
 Clone the repository:
-
 ```bash
+sudo apt install git
 git clone https://github.com/logmytop-collab/NextJSHeating-Community.git
 cd NextJSHeating-Community
 ```
@@ -134,6 +133,7 @@ you should see something like
 ```shell
 lrwxrwxrwx 1 root root 13 Nov 12 08:50 usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_921e55bdcec2ef11a32d4cac8048b910-if00-port0 -> ../../ttyUSB0
 ```
+add the device to devices in the docker-compose.yaml file 
 ```yaml
  zigbee2mqtt:
    devices:
@@ -141,9 +141,6 @@ lrwxrwxrwx 1 root root 13 Nov 12 08:50 usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Pl
       - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_3680e523ea73ef11acb6db1e313510fd-if00-port0:/dev/ttyUSB0
       # - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_921e55bdcec2ef11a32d4cac8048b910-if00-port0:/dev/ttyUSB0  
 ```
-
-enter the dongle in the docker-compose file as devive
-
 
 Build docker container and run
 
@@ -186,7 +183,7 @@ If you find this project useful, please consider:
 - Contributing code or documentation
 - Supporting ongoing development with a donation
 
-☕ Buy me a coffee: https://buymeacoffee.com/logmytop
+☕ Buy me a coffee:[ https://buymeacoffee.com/logmytop](https://buymeacoffee.com/logmytop8)
 
 ## Issues
 
