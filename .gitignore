@@ -15,6 +15,9 @@
 # production
 /build
 
+./mariadb_data
+./mariadb_conf
+
 # misc
 .DS_Store
 *.pem

@@ -12,7 +12,7 @@ services:
     networks:
       - heatingapp
     environment:
-      MYSQL_ROOT_PASSWORD: kingroot
+      MYSQL_ROOT_PASSWORD: Crazy007
       MYSQL_DATABASE: heating
   zigbee2mqtt:
     build:
@@ -32,8 +32,7 @@ services:
       - TZ=Europe/Berlin
     devices:
       # Make sure this matched your adapter location
-      - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_3680e523ea73ef11acb6db1e313510fd-if00-port0:/dev/ttyUSB0
-      # - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_921e55bdcec2ef11a32d4cac8048b910-if00-port0:/dev/ttyUSB0
+      - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_921e55bdcec2ef11a32d4cac8048b910-if00-port0:/dev/ttyUSB0
     networks:
       - heatingapp
   server_api:
