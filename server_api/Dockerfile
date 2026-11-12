@@ -7,6 +7,8 @@ RUN apt install python3-libgpiod -y
 RUN apt-get update 
 RUN apt-get install -y docker.io
 
+RUN mkdir -p /app/logs/express
+
 WORKDIR /app
 
 COPY package*.json ./
