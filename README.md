@@ -15,7 +15,7 @@ A modern web application for monitoring and managing heating systems, built with
 
 ## Mobile browser View
 
-<img src="images/room.eaxample.jpeg" alt="Dashboard" width="800">
+<img src="images/room.eaxample.jpeg" alt="Dashboard" width="200">
 ![Room setting](images/room.eaxample.jpeg)
 
 ## Technology Stack
