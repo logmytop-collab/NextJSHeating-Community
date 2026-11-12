@@ -163,17 +163,8 @@ login with admin, pwd: 4711
 The configuration and the connecting of new device happen over Zigbee2mqtt please also look at [Zigbee2mqtt](https://www.zigbee2mqtt.io/guide/usage/integrations/home_assistant.html)
 
 ```
-[http://localhost:8080/](http://localhost:8080/)
+http://localhost:8080/
 ```
-Application settings are managed using environment variables.
-
-Example:
-
-```env
-API_URL=https://api.example.com
-JWT_SECRET=your-secret
-```
-
 ## Project Structure
 
 ```text
@@ -195,16 +186,7 @@ If you find this project useful, please consider:
 - Contributing code or documentation
 - Supporting ongoing development with a donation
 
-☕ Buy me a coffee: https://buymeacoffee.com/yourname
-
-## Contributing
-
-Contributions are welcome.
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a Pull Request
+☕ Buy me a coffee: https://buymeacoffee.com/logmytop
 
 ## Issues
 
