@@ -19,14 +19,14 @@ A modern web application for monitoring and managing heating systems, built with
 
 ## Technology Stack
 
-- Next.js
+- ![Next.js](https://img.shields.io/badge/Next.js-15-black)
 - React
 - TypeScript
 - Node.js
 - Tailwind CSS
 - REST APIs
 - MQTT
-- Docker
+- ![Docker](https://img.shields.io/badge/Docker-enabled-blue)
 - JWT
 - Mariadb
 - Caddy
@@ -193,7 +193,7 @@ If you find this project useful, please consider:
 
 If you find a bug or have a feature request, please open an Issue in GitHub.
 
-## License
+## ![License](https://img.shields.io/badge/license-MIT-green)
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
