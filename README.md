@@ -92,26 +92,63 @@ Clone the repository:
 git clone https://github.com/logmytop-collab/NextJSHeating-Community.git
 cd NextJSHeating-Community
 ```
-
-
-Install dependencies:
-
+Create environment files
+- server
+```sh
+nano ./server_api/.env
+```
 ```bash
-npm install
+PORT=5000
+
+MOSQUITTO_USER=markus
+MOSQUITTO_PWD=markus
+
+DB_HOST=mariadb
+DB_PORT=3306
+DB_PWD=Crazy007
+
+NODE_ENV=production
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_REFRESH_SECRET=your-super-secret-refresh-key-change-this
+MOSQUITTO_SERVER=mosquitto
+```
+- frontend
+```sh
+nano ./frontendjs/.env
+```
+```bash
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_REFRESH_SECRET=your-super-secret-refresh-key-change-this
+
+ACCESS_TOKEN_EXPIRY=15m
+REFRESH_TOKEN_EXPIRY=7d
+
+NODE_ENV=development
+```
+Configuration of Dongle
+connect the DOngle and run 
+```bash
+->ls /dev/serial/by-id
+```
+you should see something like 
+```shell
+lrwxrwxrwx 1 root root 13 Nov 12 08:50 usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_921e55bdcec2ef11a32d4cac8048b910-if00-port0 -> ../../ttyUSB0
+```
+```yaml
+ zigbee2mqtt:
+   devices:
+      # Make sure this matched your adapter location
+      - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_3680e523ea73ef11acb6db1e313510fd-if00-port0:/dev/ttyUSB0
+      # - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_921e55bdcec2ef11a32d4cac8048b910-if00-port0:/dev/ttyUSB0  
 ```
 
-Create an environment file:
+enter the dongle in the docker-compose file as devive
+
+
+Build docker container and run
 
 ```bash
-cp .env.example .env.local
-```
-
-Configure the required environment variables.
-
-Start the development server:
-
-```bash
-npm run dev
+docker compose up --build
 ```
 
 Open your browser:
