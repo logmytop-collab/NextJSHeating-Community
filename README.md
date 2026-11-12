@@ -42,12 +42,57 @@ plus SONOFF SNZB-02D Zigbee Temperature and Humidity Sensor,
 
 ### Installation
 
+install ssh on ubuntu
+
+```bash
+sudo apt update
+sudo apt install openssh-server -y
+sudo systemctl enable ssh
+sudo ufw allow 22/tcp
+```
+install Docker
+
+```bash
+// get curl to download something
+sudo apt install curl
+// get docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+// execute install script
+sudo sh get-docker.sh
+// give docker root priviledges 
+sudo usermod -aG docker $USER
+// just update
+sudo apt update
+sudo apt upgrade
+```
+install vs code
+
+```bash
+sudo apt update
+sudo apt install wget gpg -y
+
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc \
+| gpg --dearmor > packages.microsoft.gpg
+
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg \
+/etc/apt/keyrings/packages.microsoft.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" \
+| sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+
+rm -f packages.microsoft.gpg
+
+sudo apt update
+sudo apt install code -y
+```
+
 Clone the repository:
 
 ```bash
-git clone https://github.com/logmytop-collab/NextJSHeating.git
-cd NextJSHeating
+git clone https://github.com/logmytop-collab/NextJSHeating-Community.git
+cd NextJSHeating-Community
 ```
+
 
 Install dependencies:
 
