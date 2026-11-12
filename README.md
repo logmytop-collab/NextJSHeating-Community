@@ -154,40 +154,17 @@ docker compose up --build
 Open your browser:
 
 ```
-http://localhost:3000
+[http://localhost:3000/login](http://localhost:3000/login)
 ```
-
-## Building for Production
-
-```bash
-npm run build
-npm run start
-```
-
-## Deployment
-
-The application can be deployed on:
-
-- Docker on Ubuntu Server
-
-Example Docker build:
-
-```bash
-docker build -t nextjsheating .
-docker run -p 3000:3000 nextjsheating
-```
+login with admin, pwd: 4711
 
 ## Configuration
 
-Application settings are managed using environment variables.
+The configuration and the connecting of new device happen over Zigbee2mqtt please also look at [Zigbee2mqtt](https://www.zigbee2mqtt.io/guide/usage/integrations/home_assistant.html)
 
-Example:
-
-```env
-API_URL=https://api.example.com
-JWT_SECRET=your-secret
 ```
-
+http://localhost:8080/
+```
 ## Project Structure
 
 ```text
@@ -209,16 +186,7 @@ If you find this project useful, please consider:
 - Contributing code or documentation
 - Supporting ongoing development with a donation
 
-☕ Buy me a coffee: https://buymeacoffee.com/yourname
-
-## Contributing
-
-Contributions are welcome.
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a Pull Request
+☕ Buy me a coffee: https://buymeacoffee.com/logmytop
 
 ## Issues
 
