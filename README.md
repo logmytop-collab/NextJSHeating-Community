@@ -154,16 +154,16 @@ docker compose up --build
 Open your browser:
 
 ```
-http://localhost:3000/login(http://localhost:3000/login)
+[http://localhost:3000/login](http://localhost:3000/login)
 ```
 login with admin, pwd: 4711
 
 ## Configuration
 
-The configuration and the connecting of new device happen over Zigbee2mqtt please also look at the (https://www.zigbee2mqtt.io/guide/usage/integrations/home_assistant.html)
+The configuration and the connecting of new device happen over Zigbee2mqtt please also look at [Zigbee2mqtt](https://www.zigbee2mqtt.io/guide/usage/integrations/home_assistant.html)
 
 ```
-http://localhost:8080/
+[http://localhost:8080/](http://localhost:8080/)
 ```
 Application settings are managed using environment variables.
 
